@@ -7,12 +7,18 @@
 
 | File | What it is |
 |---|---|
-| `index.html` | The page the QR code opens. Bilingual (English / Español toggle), fully self-contained — every diagram and photo is embedded, no external files. **This is the only file the repo needs.** |
+| `index.html` | The page the QR code opens. Bilingual (English / Español toggle), fully self-contained — every diagram and photo is embedded, no external files. |
 | `Wheelchair Handling Sheet.pdf` | 8.5×11, two pages. Page 1 English, page 2 Spanish. Print double-sided, laminate, punch, hang on the chair. |
 | `Wheelchair QR Sticker.pdf` | **Page 1 is 6×3 in** — the one to use. Page 2 is a 4×2 in compact fallback. Both are 2:1 landscape to fit the flat panel on the seat back. |
+| `README.md` | File-by-file overview and syncing notes. |
 | `make-qr.py` | Regenerates `qr.png` if the URL ever changes. |
 | `build_page.py` / `build_sheet.py` / `build_sticker.py` | Generators. All text lives in plain Python dicts at the top, English and Spanish side by side. |
 | `annotate_controller.py` | Redraws the numbered callouts on the controller photo. |
+| `annotate_breaker.py` | Redraws the numbered callouts on the circuit-breaker photo. |
+| `rebuild.sh` | Runs every generator above and copies the results up a level. |
+
+The whole folder — page, PDFs, docs, and `source/` — lives in the GitHub repo
+now; it's the complete archive, not just a place to drop `index.html`.
 
 ---
 
@@ -46,7 +52,7 @@ Best placement: the **back of the seat back**, where a handler sees it before th
 
 **Small text change:** in the repo, click `index.html` → pencil icon → edit → **Commit changes**. Live in about a minute.
 
-**Change that should hit the page *and* the printed pieces:** edit the matching `build_*.py`, re-run it, re-upload `index.html`, and reprint. Keeping the generators is what stops the page and the card from drifting apart.
+**Change that should hit the page *and* the printed pieces:** edit the matching `build_*.py`, run `bash source/rebuild.sh` to regenerate everything, then `git add`, commit, and push both the source change and the regenerated `index.html` / PDFs. Keeping the generators in the repo alongside their outputs is what stops the page and the card from drifting apart.
 
 **If the URL ever changes:**
 

@@ -12,18 +12,28 @@ sheet, the sticker, and the source to regenerate all three.
 
 | File | What to do with it |
 |---|---|
-| **`index.html`** | Upload to the GitHub repo. This is the page the QR code opens. Self-contained — every diagram and photo is embedded, so it is the *only* file the repo needs. |
+| **`index.html`** | The page the QR code opens. Self-contained — every diagram and photo is embedded as a data URI, no external files. |
 | **`Wheelchair Handling Sheet.pdf`** | Print double-sided (**flip on LONG edge**), laminate, punch at the red target, hang on the chair. Page 1 English, page 2 Spanish. |
 | **`Wheelchair QR Sticker.pdf`** | Print page 1 (6×3 in) and stick it on the back of the seat back. Page 2 is a 4×2 in fallback. |
 | **`HOSTING-SETUP.md`** | Printing steps, lamination and punch instructions, pre-flight checklist, and the list of facts verified on the chair rather than assumed. Read this one first. |
 
 ## Syncing
 
-- **To Drive:** drop this whole folder in. It is the complete archive.
-- **To the repo:** upload `index.html` only.
+This repo *is* the archive — the hosted page, the printable sheet and sticker,
+these docs, and the `source/` generators all live here together and stay
+version-controlled as one set. There's no separate copy to keep in step with;
+`git pull` gets you the current state of everything.
 
-Keep the two in step. If the printed card and the live page disagree, the card
-is the one in the handler's hands.
+- **Small text-only fix:** editing `index.html` directly in the GitHub web UI
+  (pencil icon → edit → commit) works fine for something that only needs to
+  change on the live page.
+- **Anything that should also hit the printed sheet or sticker:** edit the
+  matching `build_*.py`, run `bash source/rebuild.sh`, then commit and push
+  the regenerated files alongside the source change — see
+  [`source/`](#source--for-regenerating) below.
+
+Keep the page and the printed card in step. If they ever disagree, the card in
+the handler's hands is the one that's right until you reprint.
 
 ---
 
