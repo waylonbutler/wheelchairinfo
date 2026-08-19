@@ -7,18 +7,12 @@
 
 | File | What it is |
 |---|---|
-| `index.html` | The page the QR code opens. Bilingual (English / Español toggle), fully self-contained — every diagram and photo is embedded, no external files. |
-| `Wheelchair Handling Sheet.pdf` | 8.5×11, two pages. Page 1 English, page 2 Spanish. Print double-sided, laminate, punch, hang on the chair. |
-| `Wheelchair QR Sticker.pdf` | **Page 1 is 6×3 in** — the one to use. Page 2 is a 4×2 in compact fallback. Both are 2:1 landscape to fit the flat panel on the seat back. |
-| `README.md` | File-by-file overview and syncing notes. |
+| `index.html` | The page the QR code opens. Bilingual (English / Español toggle), fully self-contained — every diagram and photo is embedded, no external files. **This is the only file the repo needs.** |
+| `Wheelchair Handling Sheet.pdf` | 8.5×11, two pages. Page 1 English, page 2 Spanish. Six numbered steps in large type — written for a handler in a hurry, in bad light. Print double-sided, laminate, punch, hang on the chair. |
+| `Wheelchair QR Sticker.pdf` | One sticker, **4 × 2.5 in**. English in large type; Spanish readers are sent to the QR code. |
 | `make-qr.py` | Regenerates `qr.png` if the URL ever changes. |
 | `build_page.py` / `build_sheet.py` / `build_sticker.py` | Generators. All text lives in plain Python dicts at the top, English and Spanish side by side. |
 | `annotate_controller.py` | Redraws the numbered callouts on the controller photo. |
-| `annotate_breaker.py` | Redraws the numbered callouts on the circuit-breaker photo. |
-| `rebuild.sh` | Runs every generator above and copies the results up a level. |
-
-The whole folder — page, PDFs, docs, and `source/` — lives in the GitHub repo
-now; it's the complete archive, not just a place to drop `index.html`.
 
 ---
 
@@ -38,11 +32,11 @@ Print a fresh copy each trip. A legible card gets read; a weathered one gets ign
 
 ## Printing the sticker
 
-Use **page 1 (6×3 in)** — QR, English, and Spanish in three columns, full rule set. Page 2 (4×2 in) is the fallback if the space is tighter than expected.
+One size: **4 × 2.5 in**, sized to the flat panel on the seat back.
 
-Print at **100% / "Actual size"** on full-sheet label stock and cut to the border, or on cardstock and laminate. A 6×3 fits inside a standard **4×6 laminating pouch** with room to seal on all four sides.
+Print at **100% / "Actual size"** on full-sheet label stock and cut to the border, or on cardstock and laminate. It fits inside a standard **4×6 laminating pouch**.
 
-Best placement: the **back of the seat back**, where a handler sees it before they lift. A second copy on the **side of the power base near the yellow freewheel levers** puts the instructions where the hands go.
+Placement: the **back of the seat back**, where a handler sees it before they lift.
 
 **Scan-test it before it goes on.**
 
@@ -52,7 +46,9 @@ Best placement: the **back of the seat back**, where a handler sees it before th
 
 **Small text change:** in the repo, click `index.html` → pencil icon → edit → **Commit changes**. Live in about a minute.
 
-**Change that should hit the page *and* the printed pieces:** edit the matching `build_*.py`, run `bash source/rebuild.sh` to regenerate everything, then `git add`, commit, and push both the source change and the regenerated `index.html` / PDFs. Keeping the generators in the repo alongside their outputs is what stops the page and the card from drifting apart.
+**Reading level.** The sheet and sticker are deliberately written at roughly an 8th-grade level: short sentences, common words, no regulatory citations. Detail and the CFR references live on the web page. If you edit the printed pieces, keep them plain — a card that reads like a legal notice gets skipped.
+
+**Change that should hit the page *and* the printed pieces:** edit the matching `build_*.py`, re-run it, re-upload `index.html`, and reprint. Keeping the generators is what stops the page and the card from drifting apart.
 
 **If the URL ever changes:**
 
@@ -82,3 +78,4 @@ Use a **static** QR (encodes the URL directly), never a "dynamic" tracking QR fr
 - **39 in length** is with the footplate folded up.
 - **The seat back is bolted to the frame.** No detent pin, no release lever. It does not fold or flip forward, despite the TRU-Balance 3 manual describing that as an option. The card says so explicitly so nobody tries to force it.
 - **The joystick is not quickly removable** — it swings in and gets secured.
+- **The two upright poles on the back of the seat are the push handles.** Push by those, never by the joystick, armrests, or headrest. Push only — they are not lift points.
